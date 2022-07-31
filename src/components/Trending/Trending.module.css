@@ -1,0 +1,32 @@
+.section {
+  width: 95%;
+  color: var(--white);
+  margin-left: 3rem;
+}
+
+.trending {
+  width: 132rem;
+  height: max-content;
+  display: flex;
+  gap: 2rem;
+  overflow-x: scroll;
+}
+
+.section h2 {
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 2rem;
+}
+
+.trending::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.trending::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: rgb(54, 49, 49);
+}

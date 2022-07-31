@@ -1,0 +1,97 @@
+.card {
+  width: 22rem;
+  height: 45rem;
+  font-family: "Source Sans Pro", sans-serif;
+  border-radius: 1rem;
+  background-color: var(--white);
+  color: var(--black);
+  overflow: hidden;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.poster {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bookmark {
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background-color: var(--dark-blue);
+  opacity: 0.8;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.bookmark:hover {
+  background-color: var(--red);
+}
+
+.rate {
+  position: absolute;
+  bottom: -2rem;
+  left: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: solid 4px var(--grey);
+  border-radius: 50%;
+  background-color: #081c22;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+}
+
+.high {
+  border-color: var(--green);
+}
+
+.medium {
+  border-color: var(--yellow);
+}
+
+.low {
+  border-color: var(--red);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2.2rem;
+  margin-bottom: 0;
+  padding: 0 0.8rem;
+}
+
+.card p {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 0 0.8rem;
+}
+
+.title a:link,
+.title a:visited,
+.title a:focus {
+  text-decoration: none;
+  color: var(--black);
+  transition: color ease 200ms;
+}
+
+.title a:hover {
+  color: var(--light-blue);
+}
