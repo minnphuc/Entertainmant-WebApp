@@ -396,13 +396,13 @@ import TrendingItem from "./TrendingItem";
 // ];
 
 function Trending(props) {
-  const trendingList = props.trendingList.map(movie => (
+  const trendingList = props.trendingList.map(show => (
     <TrendingItem
-      key={movie.id}
-      id={movie.id}
-      url={movie.posterUrl}
-      title={movie.title}
-      released={movie.released}
+      key={show.id}
+      id={show.id}
+      url={show.posterUrl}
+      title={show.title}
+      media={show.media}
     />
   ));
 

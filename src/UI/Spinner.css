@@ -7,6 +7,9 @@
 /* Utility class for centering */
 .sk-center {
   margin: auto;
+  /* Entertain App */
+  grid-column: 2 / span 1;
+  margin-top: 20rem;
 }
 
 /*  Chase

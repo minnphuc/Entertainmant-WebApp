@@ -1,0 +1,18 @@
+.bookmark {
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background-color: var(--dark-blue);
+  opacity: 0.8;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.bookmark:hover {
+  background-color: var(--red);
+}

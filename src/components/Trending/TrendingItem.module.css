@@ -27,30 +27,13 @@
   text-overflow: ellipsis;
 }
 
-.released {
+.media {
   font-size: 1.6rem;
-  opacity: 0.9;
   margin-top: 0.5rem;
 }
 
-.bookmark {
-  position: absolute;
-  top: 1rem;
-  right: 0.5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background-color: var(--dark-blue);
-  opacity: 0.8;
-  z-index: 5;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  overflow: visible;
-}
-
-.bookmark:hover {
-  background-color: var(--red);
+.media img {
+  margin-right: 1rem;
 }
 
 .title a:link,

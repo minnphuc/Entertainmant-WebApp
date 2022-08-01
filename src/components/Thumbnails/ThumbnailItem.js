@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
+import Bookmark from "../Bookmark/Bookmark";
 import classes from "./ThumbnailItem.module.css";
+import movieIcon from "../../icons/icon-category-movie-dark.svg";
+import tvIcon from "../../icons/icon-category-tv-dark.svg";
 
 const IMG_URL = "https://image.tmdb.org/t/p/w200";
 
@@ -16,11 +19,18 @@ const getRateColor = rate => {
 };
 
 function ThumbnailItem(props) {
-  const [isBookmarked, setIsBookmarked] = useState();
-
-  const bookmarkHandle = () => {
-    setIsBookmarked(state => !state);
-  };
+  const mediaType =
+    props.media === "movie" ? (
+      <p className={classes.media}>
+        <img src={movieIcon} alt="movie" />
+        Movie
+      </p>
+    ) : (
+      <p className={classes.media}>
+        <img src={tvIcon} alt="tv" />
+        TV Series
+      </p>
+    );
 
   const rateClasses = `${classes.rate} ${classes[getRateColor(props.rate)]}`;
 
@@ -34,22 +44,13 @@ function ThumbnailItem(props) {
         </div>
       </Link>
 
-      <div className={classes.bookmark} onClick={bookmarkHandle}>
-        <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z"
-            stroke="#FFF"
-            stroke-width="1.5"
-            fill={isBookmarked ? "#FFF" : "none"}
-          />
-        </svg>
-      </div>
+      <Bookmark />
 
       <h3 className={classes.title}>
         <Link to={`${props.id}`}>{props.title}</Link>
       </h3>
 
-      <p>{props.released}</p>
+      {mediaType}
     </div>
   );
 }

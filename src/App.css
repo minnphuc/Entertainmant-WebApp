@@ -32,6 +32,16 @@ body {
   grid-template-columns: 10rem auto;
 }
 
+.error-msg {
+  margin: auto;
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--red);
+  grid-column: 2 / span 1;
+  width: 60rem;
+  /* margin-left: calc(50% - 30rem); */
+}
+
 /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
   width: 8px;

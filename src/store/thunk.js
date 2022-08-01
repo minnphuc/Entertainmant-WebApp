@@ -1,37 +1,56 @@
 // API DOC: https://developers.themoviedb.org/3/getting-started/introduction
 
-import { trendingActions } from "./Trending/trending-slice";
+import { showActions } from "./show-slice";
 
-const API_KEY = "40a83ffba11bd9299a9e6a2c60b74c41";
-const API_URL = "https://api.themoviedb.org/3";
+import { API_URL } from "../config";
+import { API_KEY } from "../config";
+import { getJSON } from "../helper";
+
+const transformData = (data, type) => {
+  return data.results.map(movie => {
+    const media = type === undefined ? movie.media_type : type;
+    const title = media === "tv" ? movie.name : movie.title;
+
+    return {
+      id: movie.id,
+      posterUrl: movie.poster_path,
+      media: media,
+      title: title,
+      rating: movie.vote_average,
+    };
+  });
+};
 
 export const getTrendingData = function () {
   return async function (dispatch) {
     try {
-      dispatch(trendingActions.sendingRequest());
+      dispatch(showActions.sendingRequest());
 
-      const response = await fetch(
+      const data = await getJSON(
         `${API_URL}/trending/all/week?api_key=${API_KEY}`
       );
+      const transformedData = transformData(data);
 
-      if (!response.ok) throw new Error("Something went wrong !");
-
-      const data = await response.json();
-
-      const transformedData = data.results.map(movie => {
-        return {
-          id: movie.id,
-          posterUrl: movie.poster_path,
-          title: movie.media_type === "tv" ? movie.name : movie.title,
-          media: movie.media_type,
-          released: movie.release_date,
-          rating: movie.vote_average,
-        };
-      });
-
-      dispatch(trendingActions.loadTrending(transformedData));
+      dispatch(showActions.loadData(transformedData));
     } catch (error) {
-      dispatch(trendingActions.error(error.message));
+      dispatch(showActions.error(error.message));
+    }
+  };
+};
+
+export const getThumbnailData = function (media) {
+  return async function (dispatch) {
+    try {
+      dispatch(showActions.sendingRequest());
+
+      const data = await getJSON(
+        `${API_URL}/${media}/popular?api_key=${API_KEY}`
+      );
+      const transformedData = transformData(data, media);
+
+      dispatch(showActions.loadData(transformedData));
+    } catch (error) {
+      dispatch(showActions.error(error.message));
     }
   };
 };

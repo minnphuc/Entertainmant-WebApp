@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import MoviesPage from "./pages/MoviesPage";
 import TVSeriesPage from "./pages/TVSeriesPage";
 import BookmarkPage from "./pages/BookmarkPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/tv" element={<TVSeriesPage />} />
 
         <Route path="/bookmark" element={<BookmarkPage />} />
+
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </React.Fragment>
   );

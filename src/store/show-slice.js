@@ -6,15 +6,17 @@ const initState = {
   loading: false,
 };
 
-const trendingSlice = createSlice({
-  name: "trending",
+// State to store shows data
+
+const showSlice = createSlice({
+  name: "show",
   initialState: initState,
   reducers: {
-    loadTrending(state, action) {
-      const trendingList = action.payload;
+    loadData(state, action) {
+      const showList = action.payload;
 
       state.loading = false;
-      state.data = trendingList;
+      state.data = showList;
     },
 
     sendingRequest(state) {
@@ -30,6 +32,6 @@ const trendingSlice = createSlice({
   },
 });
 
-export const trendingActions = trendingSlice.actions;
+export const showActions = showSlice.actions;
 
-export default trendingSlice.reducer;
+export default showSlice.reducer;

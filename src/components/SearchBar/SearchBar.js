@@ -4,6 +4,10 @@ import searchIcon from "../../icons/icon-search.svg";
 import classes from "./SearchBar.module.css";
 
 function SearchBar(props) {
+  const changeHandler = e => {
+    props.onSearch(e.target.value);
+  };
+
   return (
     <div className={classes["search-bar"]}>
       <label htmlFor="search" style={{ display: "none" }}></label>
@@ -12,7 +16,8 @@ function SearchBar(props) {
       <input
         id="search"
         type="text"
-        placeholder="Search for movies or TV series"
+        placeholder={props.placeholder}
+        onChange={changeHandler}
       />
     </div>
   );

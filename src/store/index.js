@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import trendingReducer from "./Trending/trending-slice";
+import showReducer from "./show-slice";
 
 const store = configureStore({
-  reducer: { trending: trendingReducer },
+  reducer: { show: showReducer },
 });
 
 export default store;
