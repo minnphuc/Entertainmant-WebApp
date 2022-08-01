@@ -46,7 +46,7 @@ nav {
   border: 2px solid white;
   border-radius: 50%;
   overflow: hidden;
-  margin-top: 22rem;
+  margin-top: 13rem;
 }
 
 .avatar img {
@@ -58,4 +58,11 @@ nav {
 .active img {
   filter: invert(100%) sepia(60%) saturate(0%) hue-rotate(122deg)
     brightness(152%) contrast(101%);
+}
+
+.attribute {
+  margin-top: 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--white);
 }
