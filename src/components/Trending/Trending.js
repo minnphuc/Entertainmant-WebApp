@@ -400,9 +400,11 @@ function Trending(props) {
     <TrendingItem
       key={show.id}
       id={show.id}
-      url={show.posterUrl}
+      posterUrl={show.posterUrl}
       title={show.title}
       media={show.media}
+      rate={show.rate}
+      isBookmarked={show.isBookmarked}
     />
   ));
 

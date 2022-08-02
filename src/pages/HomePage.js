@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import useSearch from "../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
 import { getTrendingData } from "../store/thunk";
 
@@ -16,18 +17,23 @@ function HomePage() {
   } = useSelector(state => state.show);
 
   const dispatch = useDispatch();
-  const [query, setQuery] = useState("");
+  const [queryValue, searchHandler] = useSearch("");
 
   useEffect(() => {
     dispatch(getTrendingData());
   }, [dispatch]);
 
-  const searchHandler = queryValue => {
-    setQuery(queryValue);
-  };
+  // JS
 
-  const resultTrendingData = trendingData.filter(show =>
-    show.title.toLowerCase().includes(query.toLowerCase())
+  const trending = trendingData.slice(0, 10);
+  const recommended = trendingData.slice(10);
+
+  const resultTrending = trending.filter(show =>
+    show.title.toLowerCase().includes(queryValue.toLowerCase())
+  );
+
+  const resultRecommended = recommended.filter(show =>
+    show.title.toLowerCase().includes(queryValue.toLowerCase())
   );
 
   // JSX
@@ -42,8 +48,12 @@ function HomePage() {
         placeholder={"Search for movies or TV series"}
         onSearch={searchHandler}
       />
-      <Trending trendingList={resultTrendingData.slice(0, 10)} />
-      <Thumbnails thumbnailList={resultTrendingData.slice(10)} />
+
+      <Trending trendingList={resultTrending} />
+      <Thumbnails
+        thumbnailList={resultRecommended}
+        name="Recommended for you"
+      />
     </Page>
   );
 }

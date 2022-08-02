@@ -29,9 +29,19 @@ const showSlice = createSlice({
       state.loading = false;
       state.error = errorMsg;
     },
+
+    toggleBookmark(state, action) {
+      const showID = action.payload;
+
+      const show = state.data.find(show => show.id === showID);
+
+      if (!show) return;
+
+      show.isBookmarked = !show.isBookmarked;
+    },
   },
 });
 
-export const showActions = showSlice.actions;
+export const showAction = showSlice.actions;
 
 export default showSlice.reducer;

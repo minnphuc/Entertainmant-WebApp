@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import useSearch from "../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
 import { getThumbnailData } from "../store/thunk";
 
@@ -20,14 +20,22 @@ function TVSeriesPage() {
     dispatch(getThumbnailData("tv"));
   }, [dispatch]);
 
+  const [queryValue, searchHandler] = useSearch();
+
+  const resultSeries = tvSeriesData.filter(series =>
+    series.title.toLowerCase().includes(queryValue.toLowerCase())
+  );
+
+  // JSX
+
   if (loading) return <Spinner />;
 
   if (error) return <p className="error-msg">{error}</p>;
 
   return (
     <Page>
-      <SearchBar placeholder="Search for TV Series" />
-      <Thumbnails thumbnailList={tvSeriesData} />
+      <SearchBar placeholder="Search for TV Series" onSearch={searchHandler} />
+      <Thumbnails thumbnailList={resultSeries} name="TV Series" />
     </Page>
   );
 }

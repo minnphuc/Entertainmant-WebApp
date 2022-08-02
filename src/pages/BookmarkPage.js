@@ -1,7 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import Page from "../UI/Page";
+import Thumbnails from "../components/Thumbnails/Thumbnails";
 
 function Bookmark() {
-  return <div>Bookmark</div>;
+  const bookmarkedShows = useSelector(state => state.bookmark);
+
+  return (
+    <Page>
+      <Thumbnails
+        thumbnailList={bookmarkedShows}
+        name="Your bookmarked shows"
+      />
+    </Page>
+  );
 }
 
 export default Bookmark;

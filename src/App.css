@@ -58,3 +58,7 @@ body {
   border-radius: 20px;
   background: rgb(54, 49, 49);
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey);
+}

@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showAction } from "../../store/show-slice";
+import { bookmarkAction } from "../../store/bookmark-slice";
 
 import Bookmark from "../Bookmark/Bookmark";
 import classes from "./ThumbnailItem.module.css";
@@ -19,6 +22,22 @@ const getRateColor = rate => {
 };
 
 function ThumbnailItem(props) {
+  const dispatch = useDispatch();
+
+  const bookmarkHandler = () => {
+    if (!props.isBookmarked) {
+      dispatch(showAction.toggleBookmark(props.id));
+      dispatch(bookmarkAction.addBookmark({ ...props, isBookmarked: true }));
+    }
+
+    if (props.isBookmarked) {
+      dispatch(showAction.toggleBookmark(props.id));
+      dispatch(bookmarkAction.removeBookmark(props.id));
+    }
+  };
+
+  // JSX
+
   const mediaType =
     props.media === "movie" ? (
       <p className={classes.media}>
@@ -37,14 +56,17 @@ function ThumbnailItem(props) {
   return (
     <div className={classes.card}>
       <Link className={classes.poster} to={`${props.id}`}>
-        <img src={`${IMG_URL}/${props.url}`} alt="poster" />
+        <img src={`${IMG_URL}/${props.posterUrl}`} alt="poster" />
 
         <div className={rateClasses}>
           {props.rate !== 0 ? `${props.rate}%` : "NR"}
         </div>
       </Link>
 
-      <Bookmark />
+      <Bookmark
+        onBookmark={bookmarkHandler}
+        isBookmarked={props.isBookmarked}
+      />
 
       <h3 className={classes.title}>
         <Link to={`${props.id}`}>{props.title}</Link>

@@ -394,22 +394,23 @@ import classes from "./Thumbnails.module.css";
 // ];
 
 function Thumbnails(props) {
-  const movieList = props.thumbnailList.map(show => (
+  const showList = props.thumbnailList.map(show => (
     <ThumbnailItem
       key={show.id}
       id={show.id}
-      url={show.posterUrl}
+      posterUrl={show.posterUrl}
       title={show.title}
-      rate={Math.ceil(show.rating * 10)}
+      rate={show.rate}
       media={show.media}
+      isBookmarked={show.isBookmarked}
     />
   ));
 
   return (
     <div className={classes.section}>
-      <h2>Recommend for you</h2>
+      <h2>{props.name}</h2>
 
-      <div className={classes.container}>{movieList}</div>
+      <div className={classes.container}>{showList}</div>
     </div>
   );
 }

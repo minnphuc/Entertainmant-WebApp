@@ -1,6 +1,6 @@
 // API DOC: https://developers.themoviedb.org/3/getting-started/introduction
 
-import { showActions } from "./show-slice";
+import { showAction } from "./show-slice";
 
 import { API_URL } from "../config";
 import { API_KEY } from "../config";
@@ -16,7 +16,8 @@ const transformData = (data, type) => {
       posterUrl: movie.poster_path,
       media: media,
       title: title,
-      rating: movie.vote_average,
+      rate: Math.ceil(movie.vote_average * 10),
+      isBookmarked: false,
     };
   });
 };
@@ -24,16 +25,16 @@ const transformData = (data, type) => {
 export const getTrendingData = function () {
   return async function (dispatch) {
     try {
-      dispatch(showActions.sendingRequest());
+      dispatch(showAction.sendingRequest());
 
       const data = await getJSON(
         `${API_URL}/trending/all/week?api_key=${API_KEY}`
       );
       const transformedData = transformData(data);
 
-      dispatch(showActions.loadData(transformedData));
+      dispatch(showAction.loadData(transformedData));
     } catch (error) {
-      dispatch(showActions.error(error.message));
+      dispatch(showAction.error(error.message));
     }
   };
 };
@@ -41,16 +42,16 @@ export const getTrendingData = function () {
 export const getThumbnailData = function (media) {
   return async function (dispatch) {
     try {
-      dispatch(showActions.sendingRequest());
+      dispatch(showAction.sendingRequest());
 
       const data = await getJSON(
         `${API_URL}/${media}/popular?api_key=${API_KEY}`
       );
       const transformedData = transformData(data, media);
 
-      dispatch(showActions.loadData(transformedData));
+      dispatch(showAction.loadData(transformedData));
     } catch (error) {
-      dispatch(showActions.error(error.message));
+      dispatch(showAction.error(error.message));
     }
   };
 };

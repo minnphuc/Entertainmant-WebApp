@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import useSearch from "../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
 import { getThumbnailData } from "../store/thunk";
 
@@ -11,10 +11,17 @@ import Spinner from "../UI/Spinner";
 function MoviesPage() {
   const { data: moviesData, loading, error } = useSelector(state => state.show);
   const dispatch = useDispatch();
+  const [queryValue, searchHandler] = useSearch();
 
   useEffect(() => {
     dispatch(getThumbnailData("movie"));
   }, [dispatch]);
+
+  const resultMovies = moviesData.filter(movie =>
+    movie.title.toLowerCase().includes(queryValue.toLowerCase())
+  );
+
+  // JSX
 
   if (loading) return <Spinner />;
 
@@ -22,8 +29,8 @@ function MoviesPage() {
 
   return (
     <Page>
-      <SearchBar placeholder={"Search for Movies"} />
-      <Thumbnails thumbnailList={moviesData} />
+      <SearchBar placeholder={"Search for Movies"} onSearch={searchHandler} />
+      <Thumbnails thumbnailList={resultMovies} name="Movies" />
     </Page>
   );
 }
