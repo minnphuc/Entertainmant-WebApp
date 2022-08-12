@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bookmarkAction } from "./store/bookmark-slice";
 
 import "./App.css";
 
@@ -11,7 +13,20 @@ import TVSeriesPage from "./pages/TVSeriesPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import NotFound from "./pages/NotFound";
 
+let isInitial = true;
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const bookmarkData = JSON.parse(localStorage.getItem("bookmark"));
+
+    if (bookmarkData !== null && isInitial)
+      dispatch(bookmarkAction.loadBookmark(bookmarkData));
+
+    isInitial = false;
+  }, [dispatch]);
+
   return (
     <React.Fragment>
       <NavBar />

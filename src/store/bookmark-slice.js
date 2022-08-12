@@ -19,6 +19,12 @@ const bookmarkSlice = createSlice({
 
       state.splice(removedBookmarkIndex, 1);
     },
+
+    loadBookmark(state, action) {
+      const loadedBookmark = action.payload;
+
+      loadedBookmark.forEach(bookmark => state.push(bookmark));
+    },
   },
 });
 
