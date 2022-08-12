@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useSearch from "../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
-import { getTrendingData } from "../store/thunk";
+import { getThumbnailData } from "../store/thunk";
 
 import SearchBar from "../components/SearchBar/SearchBar";
 import Trending from "../components/Trending/Trending";
@@ -10,23 +10,18 @@ import Page from "../UI/Page";
 import Spinner from "../UI/Spinner";
 
 function HomePage() {
-  const {
-    data: trendingData,
-    loading,
-    error,
-  } = useSelector(state => state.show);
-
+  const { data: trendData, loading, error } = useSelector(state => state.show);
   const dispatch = useDispatch();
   const [queryValue, searchHandler] = useSearch("");
 
   useEffect(() => {
-    dispatch(getTrendingData());
+    dispatch(getThumbnailData());
   }, [dispatch]);
 
-  // JS
+  // Selector Function
 
-  const trending = trendingData.slice(0, 10);
-  const recommended = trendingData.slice(10);
+  const trending = trendData.slice(0, 10);
+  const recommended = trendData.slice(10);
 
   const resultTrending = trending.filter(show =>
     show.title.toLowerCase().includes(queryValue.toLowerCase())

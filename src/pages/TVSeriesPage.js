@@ -9,20 +9,15 @@ import Thumbnails from "../components/Thumbnails/Thumbnails";
 import Spinner from "../UI/Spinner";
 
 function TVSeriesPage() {
-  const {
-    data: tvSeriesData,
-    loading,
-    error,
-  } = useSelector(state => state.show);
+  const { data: seriesData, loading, error } = useSelector(state => state.show);
   const dispatch = useDispatch();
+  const [queryValue, searchHandler] = useSearch();
 
   useEffect(() => {
     dispatch(getThumbnailData("tv"));
   }, [dispatch]);
 
-  const [queryValue, searchHandler] = useSearch();
-
-  const resultSeries = tvSeriesData.filter(series =>
+  const resultSeries = seriesData.filter(series =>
     series.title.toLowerCase().includes(queryValue.toLowerCase())
   );
 
@@ -35,6 +30,7 @@ function TVSeriesPage() {
   return (
     <Page>
       <SearchBar placeholder="Search for TV Series" onSearch={searchHandler} />
+
       <Thumbnails thumbnailList={resultSeries} name="TV Series" />
     </Page>
   );

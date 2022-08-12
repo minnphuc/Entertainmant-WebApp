@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { showAction } from "../../store/show-slice";
-import { bookmarkAction } from "../../store/bookmark-slice";
+import { addBookmarkData } from "../../store/thunk";
+import { removeBookmarkData } from "../../store/thunk";
 
 import Bookmark from "../Bookmark/Bookmark";
-import classes from "./ThumbnailItem.module.css";
-import movieIcon from "../../icons/icon-category-movie-dark.svg";
-import tvIcon from "../../icons/icon-category-tv-dark.svg";
+import classesReg from "./ThumbnailItem.module.css";
+import classesTrend from "./TrendingItem.module.css";
 
-const IMG_URL = "https://image.tmdb.org/t/p/w200";
+import movieIconLight from "../../icons/icon-category-movie.svg";
+import tvIconLight from "../../icons/icon-category-tv.svg";
+import movieIconDark from "../../icons/icon-category-movie-dark.svg";
+import tvIconDark from "../../icons/icon-category-tv-dark.svg";
 
 const getRateColor = rate => {
   if (rate === 0) return null;
@@ -25,16 +27,18 @@ function ThumbnailItem(props) {
   const dispatch = useDispatch();
 
   const bookmarkHandler = () => {
-    if (!props.isBookmarked) {
-      dispatch(showAction.toggleBookmark(props.id));
-      dispatch(bookmarkAction.addBookmark({ ...props, isBookmarked: true }));
-    }
+    if (!props.isBookmarked) dispatch(addBookmarkData(props));
 
-    if (props.isBookmarked) {
-      dispatch(showAction.toggleBookmark(props.id));
-      dispatch(bookmarkAction.removeBookmark(props.id));
-    }
+    if (props.isBookmarked) dispatch(removeBookmarkData(props.id));
   };
+
+  // Styling
+
+  const isRegular = props.type === "regular" ? true : false;
+  const classes = isRegular ? classesReg : classesTrend;
+  const movieIcon = isRegular ? movieIconDark : movieIconLight;
+  const tvIcon = isRegular ? tvIconDark : tvIconLight;
+  const IMG_URL = `https://image.tmdb.org/t/p/${isRegular ? "w200" : "w300"}`;
 
   // JSX
 
@@ -56,11 +60,13 @@ function ThumbnailItem(props) {
   return (
     <div className={classes.card}>
       <Link className={classes.poster} to={`${props.id}`}>
-        <img src={`${IMG_URL}/${props.posterUrl}`} alt="poster" />
+        <img src={`${IMG_URL}${props.posterUrl}`} alt="poster" />
 
-        <div className={rateClasses}>
-          {props.rate !== 0 ? `${props.rate}%` : "NR"}
-        </div>
+        {isRegular && (
+          <div className={rateClasses}>
+            {props.rate !== 0 ? `${props.rate}%` : "NR"}
+          </div>
+        )}
       </Link>
 
       <Bookmark

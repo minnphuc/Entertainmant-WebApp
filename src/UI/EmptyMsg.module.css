@@ -1,0 +1,28 @@
+.empty-msg {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+.empty-msg p {
+  color: var(--yellow);
+  margin: 0 auto;
+}
+
+.empty-msg a {
+  display: inline-block;
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;
+  text-decoration: none;
+  background-color: var(--red);
+  color: var(--white);
+  transition: opacity 200ms ease;
+}
+
+.empty-msg a:hover {
+  opacity: 0.8;
+}

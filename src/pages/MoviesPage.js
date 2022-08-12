@@ -30,6 +30,7 @@ function MoviesPage() {
   return (
     <Page>
       <SearchBar placeholder={"Search for Movies"} onSearch={searchHandler} />
+
       <Thumbnails thumbnailList={resultMovies} name="Movies" />
     </Page>
   );
