@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { bookmarkAction } from "./store/bookmark-slice";
+import { bookmarkAction } from "./store/bookmark/bookmark-slice";
 
 import "./App.css";
 
@@ -12,6 +12,7 @@ import MoviesPage from "./pages/MoviesPage";
 import TVSeriesPage from "./pages/TVSeriesPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import NotFound from "./pages/NotFound";
+import DetailPage from "./pages/DetailPage";
 
 let isInitial = true;
 
@@ -41,6 +42,8 @@ function App() {
         <Route path="/tv" element={<TVSeriesPage />} />
 
         <Route path="/bookmark" element={<BookmarkPage />} />
+
+        <Route path="/:media/:id" element={<DetailPage />} />
 
         <Route path="/*" element={<NotFound />} />
       </Routes>

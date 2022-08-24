@@ -1,11 +1,8 @@
-// API DOC: https://developers.themoviedb.org/3/getting-started/introduction
-
 import { showAction } from "./show-slice";
-import { bookmarkAction } from "./bookmark-slice";
 
-import { API_URL } from "../config";
-import { API_KEY } from "../config";
-import { getJSON } from "../helper";
+import { API_URL } from "../../config";
+import { API_KEY } from "../../config";
+import { getJSON } from "../../helper";
 
 const transformData = (data, type) => {
   return data.results.map(movie => {
@@ -48,24 +45,5 @@ export const getThumbnailData = function (media = "trending") {
     } catch (error) {
       dispatch(showAction.error(error.message));
     }
-  };
-};
-
-export const addBookmarkData = bookmarkedItem => {
-  return (dispatch, getState) => {
-    dispatch(showAction.toggleBookmark(bookmarkedItem.id));
-    //prettier-ignore
-    dispatch(bookmarkAction.addBookmark({ ...bookmarkedItem, isBookmarked: true }));
-
-    localStorage.setItem("bookmark", JSON.stringify(getState().bookmark));
-  };
-};
-
-export const removeBookmarkData = idBookmarked => {
-  return (dispatch, getState) => {
-    dispatch(showAction.toggleBookmark(idBookmarked));
-    dispatch(bookmarkAction.removeBookmark(idBookmarked));
-
-    localStorage.setItem("bookmark", JSON.stringify(getState().bookmark));
   };
 };

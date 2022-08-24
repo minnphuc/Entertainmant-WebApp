@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Page from "../UI/Page";
 import Thumbnails from "../components/Thumbnails/Thumbnails";
 import SearchBar from "../components/SearchBar/SearchBar";
+import EmptyMsg from "../UI/EmptyMsg";
 
 function Bookmark() {
   const bookmarkedShows = useSelector(state => state.bookmark);
@@ -31,13 +32,14 @@ function Bookmark() {
       <Thumbnails
         thumbnailList={bookmarkedMovies}
         name="Your bookmarked Movies"
-        type="movie"
       />
+      {bookmarkedMovies.length === 0 && <EmptyMsg media={"movie"} />}
+
       <Thumbnails
         thumbnailList={bookmarkedSeries}
         name="Your bookmarked TV Series"
-        type="tv"
       />
+      {bookmarkedSeries.length === 0 && <EmptyMsg media={"tv"} />}
     </Page>
   );
 }

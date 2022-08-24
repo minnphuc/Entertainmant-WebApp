@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addBookmarkData } from "../../store/thunk";
-import { removeBookmarkData } from "../../store/thunk";
+import { addBookmarkData } from "../../store/bookmark/bookmark-thunk";
+import { removeBookmarkData } from "../../store/bookmark/bookmark-thunk";
 
 import Bookmark from "../Bookmark/Bookmark";
 import classesReg from "./ThumbnailItem.module.css";
@@ -59,7 +59,7 @@ function ThumbnailItem(props) {
 
   return (
     <div className={classes.card}>
-      <Link className={classes.poster} to={`${props.id}`}>
+      <Link className={classes.poster} to={`/${props.media}/${props.id}`}>
         <img src={`${IMG_URL}${props.posterUrl}`} alt="poster" />
 
         {isRegular && (
@@ -75,7 +75,7 @@ function ThumbnailItem(props) {
       />
 
       <h3 className={classes.title}>
-        <Link to={`${props.id}`}>{props.title}</Link>
+        <Link to={`/${props.media}/${props.id}`}>{props.title}</Link>
       </h3>
 
       {mediaType}

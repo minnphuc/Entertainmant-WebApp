@@ -8,6 +8,7 @@
 }
 
 .empty-msg p {
+  font-family: 700;
   color: var(--yellow);
   margin: 0 auto;
 }

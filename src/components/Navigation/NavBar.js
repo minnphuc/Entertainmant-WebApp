@@ -58,7 +58,7 @@ function NavBar() {
         </li>
 
         <li>
-          <div className={classes.attribute}>
+          <div className={classes.contribute}>
             <p>Powered by</p>
             <img src={tmdbLogo} alt="TMDB" />
           </div>

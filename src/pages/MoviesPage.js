@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useSearch from "../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
-import { getThumbnailData } from "../store/thunk";
+import { getThumbnailData } from "../store/show/show-thunk";
 
 import SearchBar from "../components/SearchBar/SearchBar";
 import Thumbnails from "../components/Thumbnails/Thumbnails";
