@@ -5,6 +5,8 @@ import { addBookmarkData } from "../../store/bookmark/bookmark-thunk";
 import { removeBookmarkData } from "../../store/bookmark/bookmark-thunk";
 
 import Bookmark from "../Bookmark/Bookmark";
+import Rating from "../../UI/Rating";
+
 import classesReg from "./ThumbnailItem.module.css";
 import classesTrend from "./TrendingItem.module.css";
 
@@ -12,16 +14,6 @@ import movieIconLight from "../../icons/icon-category-movie.svg";
 import tvIconLight from "../../icons/icon-category-tv.svg";
 import movieIconDark from "../../icons/icon-category-movie-dark.svg";
 import tvIconDark from "../../icons/icon-category-tv-dark.svg";
-
-const getRateColor = rate => {
-  if (rate === 0) return null;
-
-  if (rate >= 70) return "high";
-
-  if (rate < 70 && rate >= 50) return "medium";
-
-  if (rate < 50) return "low";
-};
 
 function ThumbnailItem(props) {
   const dispatch = useDispatch();
@@ -55,17 +47,16 @@ function ThumbnailItem(props) {
       </p>
     );
 
-  const rateClasses = `${classes.rate} ${classes[getRateColor(props.rate)]}`;
-
   return (
     <div className={classes.card}>
       <Link className={classes.poster} to={`/${props.media}/${props.id}`}>
         <img src={`${IMG_URL}${props.posterUrl}`} alt="poster" />
 
         {isRegular && (
-          <div className={rateClasses}>
-            {props.rate !== 0 ? `${props.rate}%` : "NR"}
-          </div>
+          <Rating
+            rating={props.rate}
+            style={{ bottom: "-2rem", left: "0.5rem" }}
+          />
         )}
       </Link>
 

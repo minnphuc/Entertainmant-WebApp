@@ -1,0 +1,27 @@
+.rate {
+  position: absolute;
+  /* bottom: -2rem; */
+  /* left: 0.5rem; */
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: solid 4px var(--grey);
+  border-radius: 50%;
+  background-color: #081c22;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+}
+
+.high {
+  border-color: var(--green);
+}
+
+.medium {
+  border-color: var(--yellow);
+}
+
+.low {
+  border-color: var(--red);
+}

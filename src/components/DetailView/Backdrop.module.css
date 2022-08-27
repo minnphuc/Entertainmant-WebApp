@@ -1,0 +1,20 @@
+.backdrop-poster {
+  width: 100%;
+  height: 50rem;
+  position: relative;
+  z-index: 1;
+}
+
+.backdrop-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.backdrop-filter {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+}

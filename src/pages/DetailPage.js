@@ -4,7 +4,10 @@ import Page from "../UI/Page";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailData } from "../store/detail-show/detail-show-thunk";
+
+import Backdrop from "../components/DetailView/Backdrop";
 import Spinner from "../UI/Spinner";
+import Detail from "../components/DetailView/Detail";
 
 const DetailPage = () => {
   const { media, id } = useParams();
@@ -19,13 +22,14 @@ const DetailPage = () => {
 
   if (error) return <p className="error-msg">{error}</p>;
 
-  if (!loading) console.log(data);
+  if (!loading)
+    return (
+      <Page>
+        <Backdrop backdropURL={data.backdrop} />
 
-  return (
-    <Page>
-      <p>Detail Page</p>
-    </Page>
-  );
+        <Detail detail={data} />
+      </Page>
+    );
 };
 
 export default DetailPage;

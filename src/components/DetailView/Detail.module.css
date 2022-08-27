@@ -1,0 +1,119 @@
+.detail-container {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin-top: -30rem;
+  display: grid;
+  padding: 0 2rem;
+  grid-template-columns: 45rem auto;
+  grid-template-rows: 30rem 1fr;
+  color: var(--white);
+}
+
+.poster {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+/* HEADER */
+
+.header {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  padding: 0;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 400;
+  font-family: "Merriweather", serif;
+  margin: 0;
+}
+
+.tagline {
+  opacity: 0.8;
+  margin-top: 0.7rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.media {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--grey);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+.genres {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4rem;
+  font-size: 2.3rem;
+  position: relative;
+}
+
+.genres button {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  background-color: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.genres button:hover {
+  opacity: 0.8;
+}
+
+.genres div {
+  font-weight: 400;
+  text-align: end;
+  position: absolute;
+  right: 5%;
+}
+
+/* CONTENT */
+
+.content {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  padding-right: 5rem;
+}
+
+.info {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.info span {
+  display: inline-block;
+  width: 20rem;
+  opacity: 0.6;
+}
+
+.overview {
+  margin-top: 3rem;
+  opacity: 0.9;
+}
+
+a:link,
+a:visited,
+a:focus {
+  text-decoration: none;
+  color: var(--white);
+  transition: color ease 200ms;
+}
+
+a:hover {
+  color: var(--light-blue);
+}
