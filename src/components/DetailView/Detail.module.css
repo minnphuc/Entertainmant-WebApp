@@ -15,6 +15,29 @@
   grid-row: 1 / span 2;
 }
 
+.play-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 40rem;
+  color: var(--white);
+  background-color: var(--red);
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.play-btn:hover {
+  opacity: 0.8;
+}
+
 /* HEADER */
 
 .header {

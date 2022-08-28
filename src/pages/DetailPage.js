@@ -22,14 +22,13 @@ const DetailPage = () => {
 
   if (error) return <p className="error-msg">{error}</p>;
 
-  if (!loading)
-    return (
-      <Page>
-        <Backdrop backdropURL={data.backdrop} />
+  return (
+    <Page>
+      <Backdrop backdropURL={data.backdrop} />
 
-        <Detail detail={data} />
-      </Page>
-    );
+      <Detail detail={data} />
+    </Page>
+  );
 };
 
 export default DetailPage;

@@ -5,19 +5,24 @@ import Rating from "../../UI/Rating";
 
 import classes from "./Detail.module.css";
 import iconBookmark from "../../icons/icon-bookmark-full.svg";
+import iconPlay from "../../icons/icon-play.svg";
 
 const IMG_URL = `https://image.tmdb.org/t/p/w400`;
 
 function Detail(props) {
   const detail = props.detail;
 
+  if (!detail.title) return;
+
   return (
     <div className={classes["detail-container"]}>
-      <img
-        src={`${IMG_URL}${detail.poster}`}
-        className={classes.poster}
-        alt="poster"
-      />
+      <div className={classes.poster}>
+        <img src={`${IMG_URL}${detail.poster}`} alt="poster" />
+        <button className={classes["play-btn"]}>
+          <img src={iconPlay} alt="play" />
+          WATCH NOW
+        </button>
+      </div>
 
       <div className={classes.header}>
         <p className={classes.title}>{detail.title}</p>
