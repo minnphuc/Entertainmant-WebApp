@@ -4,10 +4,10 @@ import "./Spinner.css";
 
 function Spinner() {
   return (
-    <div class="sk-flow sk-center">
-      <div class="sk-flow-dot"></div>
-      <div class="sk-flow-dot"></div>
-      <div class="sk-flow-dot"></div>
+    <div className="sk-flow sk-center">
+      <div className="sk-flow-dot"></div>
+      <div className="sk-flow-dot"></div>
+      <div className="sk-flow-dot"></div>
     </div>
   );
 }

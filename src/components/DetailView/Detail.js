@@ -18,10 +18,13 @@ function Detail(props) {
     <div className={classes["detail-container"]}>
       <div className={classes.poster}>
         <img src={`${IMG_URL}${detail.poster}`} alt="poster" />
-        <button className={classes["play-btn"]}>
-          <img src={iconPlay} alt="play" />
-          WATCH NOW
-        </button>
+
+        <a href={detail.homepage} target="_blank" rel="noreferrer">
+          <button className={classes["play-btn"]}>
+            <img src={iconPlay} alt="play" />
+            WATCH NOW
+          </button>
+        </a>
       </div>
 
       <div className={classes.header}>

@@ -19,6 +19,7 @@ const transformData = (data, media) => {
     country: data.production_countries[0]?.name,
     released: media === "tv" ? data.first_air_date : data.release_date,
     overview: data.overview,
+    homepage: data.homepage ? data.homepage : "//:0",
   };
 };
 
@@ -32,6 +33,8 @@ export const getDetailData = function (media, id) {
       );
 
       const finalData = transformData(data, media);
+
+      console.log(finalData);
 
       dispatch(detailShowAction.loadDetailData(finalData));
     } catch (error) {
