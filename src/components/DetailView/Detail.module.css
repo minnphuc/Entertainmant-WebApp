@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  width: 40rem;
+  width: 400px;
   color: var(--white);
   background-color: var(--red);
   font-size: 2rem;
@@ -78,24 +78,7 @@
   position: relative;
 }
 
-.genres button {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem 2.5rem;
-  font-weight: 700;
-  background-color: var(--red);
-  color: var(--white);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: opacity 200ms ease;
-}
-
-.genres button:hover {
-  opacity: 0.8;
-}
-
-.genres div {
+.genres-detail {
   font-weight: 400;
   text-align: end;
   position: absolute;

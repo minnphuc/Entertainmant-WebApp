@@ -1,0 +1,49 @@
+.bookmark-btn {
+  position: relative;
+  width: 19rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--red);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+  overflow: hidden;
+}
+
+.bookmark-btn-content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 200ms ease;
+}
+
+.bookmark-btn-content:first-child {
+  transform: translateY(-100%);
+}
+
+.bookmark-btn-content:last-child {
+  transform: translateY(0%);
+}
+
+/* Active Class */
+
+.bookmarked {
+  color: var(--black);
+  background-color: var(--yellow);
+}
+
+.bookmarked div:first-child {
+  transform: translateY(0%);
+}
+
+.bookmarked div:last-child {
+  transform: translateY(100%);
+}

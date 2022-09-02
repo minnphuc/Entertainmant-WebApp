@@ -27,6 +27,13 @@ const detailShowSlice = createSlice({
       state.data = data;
       state.loading = false;
     },
+
+    toggleBookmark(state, action) {
+      const id = action.payload;
+
+      if (id === state.data.id)
+        state.data.isBookmarked = !state.data.isBookmarked;
+    },
   },
 });
 
