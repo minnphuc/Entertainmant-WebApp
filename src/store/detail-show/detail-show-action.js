@@ -6,11 +6,12 @@ import { getJSON } from "../../helper";
 
 const transformData = (data, media) => {
   return {
+    id: data.id,
     title: media === "tv" ? data.name : data.title,
     tagline: data.tagline,
     media: media,
-    poster: data.poster_path,
-    backdrop: data.backdrop_path,
+    posterUrl: data.poster_path,
+    backdropUrl: data.backdrop_path,
     rating: Math.ceil(data.vote_average * 10),
     genres: data.genres.map(genre => genre.name),
     createdBy: data.created_by
@@ -20,11 +21,12 @@ const transformData = (data, media) => {
     released: media === "tv" ? data.first_air_date : data.release_date,
     overview: data.overview,
     homepage: data.homepage ? data.homepage : "//:0",
+    isBookmarked: false,
   };
 };
 
 export const getDetailData = function (media, id) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
       dispatch(detailShowAction.sendingRequest());
 
@@ -32,11 +34,14 @@ export const getDetailData = function (media, id) {
         `${API_URL}/${media}/${id}?api_key=${API_KEY}`
       );
 
-      const finalData = transformData(data, media);
+      const detailData = transformData(data, media);
 
-      console.log(finalData);
+      const bookmarkedShow = getState().bookmark;
 
-      dispatch(detailShowAction.loadDetailData(finalData));
+      if (bookmarkedShow.some(show => show.id === detailData.id))
+        detailData.isBookmarked = true;
+
+      dispatch(detailShowAction.loadDetailData(detailData));
     } catch (error) {
       dispatch(detailShowAction.error(error.message));
     }

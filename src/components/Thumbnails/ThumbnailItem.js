@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addBookmarkData } from "../../store/bookmark/bookmark-thunk";
-import { removeBookmarkData } from "../../store/bookmark/bookmark-thunk";
+import { addBookmarkData } from "../../store/bookmark/bookmark-action";
+import { removeBookmarkData } from "../../store/bookmark/bookmark-action";
 
 import Bookmark from "../Bookmark/Bookmark";
 import Rating from "../../UI/Rating";

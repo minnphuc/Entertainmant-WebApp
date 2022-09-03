@@ -3,7 +3,7 @@ import Page from "../UI/Page";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetailData } from "../store/detail-show/detail-show-thunk";
+import { getDetailData } from "../store/detail-show/detail-show-action";
 
 import Backdrop from "../components/DetailView/Backdrop";
 import Spinner from "../UI/Spinner";
@@ -24,7 +24,7 @@ const DetailPage = () => {
 
   return (
     <Page>
-      <Backdrop backdropURL={data.backdrop} />
+      <Backdrop backdropURL={data.backdropUrl} />
 
       <Detail detail={data} />
     </Page>

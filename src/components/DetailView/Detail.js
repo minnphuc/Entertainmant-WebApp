@@ -1,23 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  addBookmarkData,
+  removeBookmarkData,
+} from "../../store/bookmark/bookmark-action";
 
 import Rating from "../../UI/Rating";
 
 import classes from "./Detail.module.css";
-import iconBookmark from "../../icons/icon-bookmark-full.svg";
 import iconPlay from "../../icons/icon-play.svg";
+import BookmarkButton from "./BookmarkButton";
 
 const IMG_URL = `https://image.tmdb.org/t/p/w400`;
 
 function Detail(props) {
   const detail = props.detail;
+  const dispatch = useDispatch();
 
   if (!detail.title) return;
+
+  const bookmarkHandler = () => {
+    if (!detail.isBookmarked)
+      dispatch(
+        addBookmarkData({
+          id: detail.id,
+          posterUrl: detail.posterUrl,
+          title: detail.title,
+          rate: detail.rating,
+          media: detail.media,
+        })
+      );
+
+    if (detail.isBookmarked) dispatch(removeBookmarkData(detail.id));
+  };
 
   return (
     <div className={classes["detail-container"]}>
       <div className={classes.poster}>
-        <img src={`${IMG_URL}${detail.poster}`} alt="poster" />
+        <img src={`${IMG_URL}${detail.posterUrl}`} alt="poster" />
 
         <a href={detail.homepage} target="_blank" rel="noreferrer">
           <button className={classes["play-btn"]}>
@@ -38,11 +59,14 @@ function Detail(props) {
         <Rating rating={detail.rating} style={{ position: "static" }} />
 
         <div className={classes.genres}>
-          <button>
-            <img src={iconBookmark} alt="bookmark" /> Add to bookmark
-          </button>
+          <BookmarkButton
+            onBookmark={bookmarkHandler}
+            isBookmarked={detail.isBookmarked}
+          />
 
-          <div>{detail.genres.join(", ")}</div>
+          <div className={classes["genres-detail"]}>
+            {detail.genres.join(", ")}
+          </div>
         </div>
       </div>
 
