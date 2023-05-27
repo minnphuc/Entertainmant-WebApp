@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { bookmarkAction } from "./store/bookmark/bookmark-slice";
+import { loginWithStoredToken } from "./store/auth/auth-action";
 
 import "./App.css";
 
@@ -13,11 +14,17 @@ import TVSeriesPage from "./pages/TVSeriesPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import NotFound from "./pages/NotFound";
 import DetailPage from "./pages/DetailPage";
+import AuthPage from "./pages/Auth/AuthPage";
 
 let isInitial = true;
 
 function App() {
+  const { isLogin } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loginWithStoredToken());
+  }, [dispatch]);
 
   useEffect(() => {
     const bookmarkData = JSON.parse(localStorage.getItem("bookmark"));
@@ -30,20 +37,40 @@ function App() {
 
   return (
     <React.Fragment>
-      <NavBar />
+      {isLogin && <NavBar />}
 
       <Routes>
-        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/" element={<Navigate replace to="/auth" />} />
 
-        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/auth"
+          element={!isLogin ? <AuthPage /> : <Navigate replace to="/home" />}
+        />
 
-        <Route path="/movie" element={<MoviesPage />} />
+        <Route
+          path="/home"
+          element={isLogin ? <HomePage /> : <Navigate replace to="/auth" />}
+        />
 
-        <Route path="/tv" element={<TVSeriesPage />} />
+        <Route
+          path="/movie"
+          element={isLogin ? <MoviesPage /> : <Navigate replace to="/auth" />}
+        />
 
-        <Route path="/bookmark" element={<BookmarkPage />} />
+        <Route
+          path="/tv"
+          element={isLogin ? <TVSeriesPage /> : <Navigate replace to="/auth" />}
+        />
 
-        <Route path="/:media/:id" element={<DetailPage />} />
+        <Route
+          path="/bookmark"
+          element={isLogin ? <BookmarkPage /> : <Navigate replace to="/auth" />}
+        />
+
+        <Route
+          path="/:media/:id"
+          element={isLogin ? <DetailPage /> : <Navigate replace to="/auth" />}
+        />
 
         <Route path="/*" element={<NotFound />} />
       </Routes>

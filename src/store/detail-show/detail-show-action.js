@@ -30,11 +30,19 @@ export const getDetailData = function (media, id) {
     try {
       dispatch(detailShowAction.sendingRequest());
 
-      const data = await getJSON(
-        `${API_URL}/${media}/${id}?api_key=${API_KEY}`
+      const data = await getJSON(`${API_URL}/${media}/${id}?api_key=${API_KEY}`);
+
+      const { results: trailers } = await getJSON(
+        `${API_URL}/${media}/${id}/videos?api_key=${API_KEY}`
       );
 
+      const trailer =
+        trailers.length !== 0
+          ? trailers.find(t => t.type === "Trailer") || trailers[0]
+          : null;
+
       const detailData = transformData(data, media);
+      detailData.trailerId = trailer?.key;
 
       const bookmarkedShow = getState().bookmark;
 
