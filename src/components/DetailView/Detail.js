@@ -7,6 +7,7 @@ import {
 } from "../../store/bookmark/bookmark-action";
 
 import Rating from "../../UI/Rating";
+import BackdropFilter from "../../UI/BackdropFilter";
 
 import classes from "./Detail.module.css";
 import iconPlay from "../../icons/icon-play.svg";
@@ -38,19 +39,22 @@ function Detail(props) {
   };
 
   const watchTrailer = () => setShowTrailer(true);
+  const closeTrailer = () => setShowTrailer(false);
 
   return (
     <>
       {showTrailer && detail.trailerId && (
-        <iframe
-          width="500"
-          height="315"
-          src={`https://www.youtube.com/embed/${detail.trailerId}`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <BackdropFilter onClick={closeTrailer}>
+          <iframe
+            width="900"
+            height="615"
+            src={`https://www.youtube.com/embed/${detail.trailerId}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </BackdropFilter>
       )}
 
       <div className={classes["detail-container"]}>
