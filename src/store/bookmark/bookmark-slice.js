@@ -25,6 +25,10 @@ const bookmarkSlice = createSlice({
 
       loadedBookmark.forEach(bookmark => state.push(bookmark));
     },
+
+    refreshBookmark(state) {
+      state.length = 0;
+    },
   },
 });
 

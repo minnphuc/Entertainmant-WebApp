@@ -8,6 +8,7 @@ import {
 
 import Rating from "../../UI/Rating";
 import BackdropFilter from "../../UI/BackdropFilter";
+import CommentSection from "../Comment/CommentSection";
 
 import classes from "./Detail.module.css";
 import iconPlay from "../../icons/icon-play.svg";
@@ -63,7 +64,7 @@ function Detail(props) {
 
           <button onClick={watchTrailer} className={classes["play-btn"]}>
             <img src={iconPlay} alt="play" />
-            WATCH NOW
+            WATCH TRAILER
           </button>
         </div>
 
@@ -106,6 +107,8 @@ function Detail(props) {
           <div className={classes.overview}>{detail.overview}</div>
         </div>
       </div>
+
+      <CommentSection post={detail.id} />
     </>
   );
 }

@@ -15,11 +15,6 @@ function LoginPage() {
   return (
     <>
       <div className={classes.page}>
-        <div className={classes.banner}>
-          fakebook
-          <p>Connect with friends and the world around you on Fakebook.</p>
-        </div>
-
         {loginMode && <LoginForm onToggle={toggleForm} />}
         {!loginMode && <SignupForm onToggle={toggleForm} />}
       </div>

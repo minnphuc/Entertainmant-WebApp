@@ -17,9 +17,7 @@ function Bookmark() {
     show.title.toLowerCase().includes(queryValue.toLowerCase())
   );
 
-  const bookmarkedMovies = resultBookmark.filter(
-    show => show.media === "movie"
-  );
+  const bookmarkedMovies = resultBookmark.filter(show => show.media === "movie");
   const bookmarkedSeries = resultBookmark.filter(show => show.media === "tv");
 
   return (
@@ -29,16 +27,10 @@ function Bookmark() {
         onSearch={searchHandler}
       />
 
-      <Thumbnails
-        thumbnailList={bookmarkedMovies}
-        name="Your bookmarked Movies"
-      />
+      <Thumbnails thumbnailList={bookmarkedMovies} name="Your bookmarked Movies" />
       {bookmarkedMovies.length === 0 && <EmptyMsg media={"movie"} />}
 
-      <Thumbnails
-        thumbnailList={bookmarkedSeries}
-        name="Your bookmarked TV Series"
-      />
+      <Thumbnails thumbnailList={bookmarkedSeries} name="Your bookmarked TV Series" />
       {bookmarkedSeries.length === 0 && <EmptyMsg media={"tv"} />}
     </Page>
   );

@@ -16,10 +16,8 @@ import NotFound from "./pages/NotFound";
 import DetailPage from "./pages/DetailPage";
 import AuthPage from "./pages/Auth/AuthPage";
 
-let isInitial = true;
-
 function App() {
-  const { isLogin } = useSelector(state => state.auth);
+  const { isLogin, user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,13 +25,15 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const bookmarkData = JSON.parse(localStorage.getItem("bookmark"));
+    if (!user?.bookmark) return;
 
-    if (bookmarkData !== null && isInitial)
+    const bookmarkData = JSON.parse(user.bookmark);
+
+    if (bookmarkData !== null) {
+      localStorage.setItem("bookmark", user.bookmark);
       dispatch(bookmarkAction.loadBookmark(bookmarkData));
-
-    isInitial = false;
-  }, [dispatch]);
+    }
+  }, [dispatch, user]);
 
   return (
     <React.Fragment>

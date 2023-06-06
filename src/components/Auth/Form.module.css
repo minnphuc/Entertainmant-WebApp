@@ -1,15 +1,10 @@
 .form {
   width: 40rem;
   height: max-content;
-  grid-column: 2 / span 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
   border: none;
   border-radius: 1rem;
   padding: 2rem 1.5rem;

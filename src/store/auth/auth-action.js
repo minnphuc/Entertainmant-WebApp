@@ -1,4 +1,5 @@
 import { authActions } from "./auth-slice";
+import { bookmarkAction } from "../bookmark/bookmark-slice";
 
 import { LOGIN_SERVICE, SIGNUP_SERVICE } from "../../config";
 import { JWT_EXPIRES_IN } from "../../config";
@@ -60,9 +61,11 @@ const login = (dispatch, token, user) => {
 export const logoutRequest = function () {
   return dispatch => {
     dispatch(authActions.logout());
+    dispatch(bookmarkAction.refreshBookmark());
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("expiredTime");
+    localStorage.removeItem("bookmark");
     clearTimeout(logoutTimerId);
   };
 };
@@ -111,7 +114,7 @@ export const signupRequest = function (newUser) {
 
       const { token, user } = data;
 
-      login(dispatch, token, user._id);
+      login(dispatch, token, user);
     } catch (error) {
       console.log(error);
     }

@@ -14,12 +14,14 @@ export const addBookmarkData = bookmarkedItem => {
     const { token } = getState().auth;
     const updatedBookmark = getState().bookmark;
 
+    console.log(updatedBookmark);
+
     localStorage.setItem("bookmark", JSON.stringify(updatedBookmark));
 
     fetch(UPDATE_ME_SERVICE, {
       method: "PATCH",
       body: JSON.stringify({
-        bookmark: updatedBookmark.map(show => show.id),
+        bookmark: JSON.stringify(updatedBookmark),
       }),
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +45,7 @@ export const removeBookmarkData = idBookmarked => {
     fetch(UPDATE_ME_SERVICE, {
       method: "PATCH",
       body: JSON.stringify({
-        bookmark: updatedBookmark.map(show => show.id),
+        bookmark: JSON.stringify(updatedBookmark),
       }),
       headers: {
         "Content-Type": "application/json",

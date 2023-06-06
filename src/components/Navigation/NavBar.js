@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import logo from "../../icons/logo.svg";
 import homeIcon from "../../icons/icon-nav-home.svg";
@@ -8,13 +8,18 @@ import movieIcon from "../../icons/icon-nav-movies.svg";
 import tvIcon from "../../icons/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../icons/icon-nav-bookmark.svg";
 import tmdbLogo from "../../icons/logo-tmdb.svg";
+import logoutLogo from "../../icons/logout.svg";
 
 import classes from "./NavBar.module.css";
+import { logoutRequest } from "../../store/auth/auth-action";
 
 function NavBar() {
   const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
-  console.log(user);
+  const logoutHandler = () => {
+    dispatch(logoutRequest());
+  };
 
   return (
     <nav>
@@ -59,6 +64,10 @@ function NavBar() {
           <div className={classes.avatar}>
             <img src={user?.photo} alt="Avatar" />
           </div>
+        </li>
+
+        <li onClick={logoutHandler}>
+          <img className={classes.logout} src={logoutLogo} alt="Logout" />
         </li>
 
         <li>

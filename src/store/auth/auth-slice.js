@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const init = {
   token: "",
-  user: 0,
+  user: {},
   isLogin: false,
 };
 

@@ -37,8 +37,8 @@ nav {
 }
 
 .icon-list img:hover {
-  filter: invert(100%) sepia(60%) saturate(0%) hue-rotate(122deg)
-    brightness(152%) contrast(101%);
+  filter: invert(100%) sepia(60%) saturate(0%) hue-rotate(122deg) brightness(152%)
+    contrast(101%);
 }
 
 .avatar {
@@ -46,7 +46,7 @@ nav {
   border: 2px solid white;
   border-radius: 50%;
   overflow: hidden;
-  margin-top: 13rem;
+  margin-top: 7rem;
 }
 
 .avatar img {
@@ -56,8 +56,8 @@ nav {
 }
 
 .active img {
-  filter: invert(100%) sepia(60%) saturate(0%) hue-rotate(122deg)
-    brightness(152%) contrast(101%);
+  filter: invert(100%) sepia(60%) saturate(0%) hue-rotate(122deg) brightness(152%)
+    contrast(101%);
 }
 
 .contribute {
@@ -65,4 +65,10 @@ nav {
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--white);
+}
+
+.logout {
+  margin-top: 3rem;
+  width: 3rem;
+  cursor: pointer;
 }
